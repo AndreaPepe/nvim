@@ -23,4 +23,7 @@ M.on_attach = function(client, bufnr)
 		map("n", "<leader>oi", ":PyrightOrganizeImports<CR>", "Organizeimports")
 	end
 end
+
+-- Diagnostic signs
+M.diagnostic_signs = { Error = " ", Warn = " ", Hint = "💡", Info = "" }
 return M

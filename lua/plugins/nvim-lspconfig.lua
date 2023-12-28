@@ -1,11 +1,19 @@
+local on_attach = require("util.lsp").on_attach
+local diagnostics_signs = require("util.lsp").diagnostic_signs
+
 local config = function()
 	-- this should be placed before requiring lspconfig
 	-- require("neoconf").setup({})
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local lspconfig = require("lspconfig")
 
-	local on_attach = require("util.lsp").on_attach
-    local capabilities = cmp_nvim_lsp.default_capabilities() 
+    -- attaching diagnostic signs
+    for type, icon in pairs(diagnostics_signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    end
+
+    local capabilities = cmp_nvim_lsp.default_capabilities()
 
 
 	-- lua LS
