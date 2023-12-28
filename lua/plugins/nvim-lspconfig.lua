@@ -3,7 +3,7 @@ local diagnostics_signs = require("util.lsp").diagnostic_signs
 
 local config = function()
 	-- this should be placed before requiring lspconfig
-	-- require("neoconf").setup({})
+	require("neoconf").setup({})
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local lspconfig = require("lspconfig")
 
