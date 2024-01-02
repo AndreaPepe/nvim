@@ -1,31 +1,22 @@
 return {
+	{
+		"L3MON4D3/LuaSnip",
+		lazy = false,
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"saadparwaiz1/cmp_luasnip",
+		},
+	},
+	{
+		"hrsh7th/cmp-nvim-lsp",
+		lazy = false,
+		config = true,
+	},
 
+	{ "saadparwaiz1/cmp_luasnip" },
+	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-path" },
+	{ "hrsh7th/cmp-cmdline" },
+	{ "hrsh7th/cmp-nvim-lua" },
+	{ "folke/neodev.nvim", opts = {} },
 }
-
--- Auto-complete features
---[[
-local cmp = require("cmp")
-local cmp_action = require("lsp-zero").cmp_action()
-
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end
-    },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered()
-    },
-    sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "nvim_lua" },
-        { name = "luasnip" },
-    }, 
-    {
-        {
-            name = "buffer",
-
-        }
-    })
-}) --]]

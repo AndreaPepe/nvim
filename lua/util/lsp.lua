@@ -1,5 +1,10 @@
 local M = {}
 
+-- Set keymaps with description
+M.map = function(mode, lhs, rhs, opts)
+    vim.keymap.set(mode, lhs, rhs, opts)
+end
+
 -- Set keymaps on the active lsp servers
 M.on_attach = function(client, bufnr)
 	local map = function(mode, lhs, rhs, desc)
