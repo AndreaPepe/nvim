@@ -88,23 +88,28 @@ null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.shfmt,
+		null_ls.builtins.formatting.black,
+		null_ls.builtins.formatting.latexindent,
+		null_ls.builtins.diagnostics.flake8,
+		null_ls.builtins.diagnostics.luacheck,
+		null_ls.builtins.diagnostics.chktex,
 	},
-    -- format on save
-    on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group =augroup, buffer=bufnr})
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    vim.lsp.buf.format({
-                        bufnr = bufnr,
-                        filter = function(_client)
-                            return _client.name == "null-ls"
-                        end
-                    })
-                end,
-            })
-        end
-    end
+	-- format on save
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({
+						bufnr = bufnr,
+						filter = function(_client)
+							return _client.name == "null-ls"
+						end,
+					})
+				end,
+			})
+		end
+	end,
 })

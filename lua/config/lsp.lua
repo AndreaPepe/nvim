@@ -4,17 +4,16 @@ local diagnostics_signs = require("util.lsp").diagnostic_signs
 local config_fun = function()
 	-- this should be placed before requiring lspconfig
 	require("neoconf").setup({})
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local lspconfig = require("lspconfig")
 
-    -- attaching diagnostic signs
-    for type, icon in pairs(diagnostics_signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+	-- attaching diagnostic signs
+	for type, icon in pairs(diagnostics_signs) do
+		local hl = "DiagnosticSign" .. type
+		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+	end
 
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-
+	local capabilities = cmp_nvim_lsp.default_capabilities()
 
 	-- lua LS
 	lspconfig.lua_ls.setup({
@@ -53,21 +52,11 @@ local config_fun = function()
 		},
 	})
 
-	--[[ -- format on save
-	local lsp_fmt_group = vim.api.nvim_create_augroup("LspFormattingGroup", {})
-	vim.api.nvim_create_autocmd("BufWritePost", {
-		group = lsp_fmt_group,
-		callback = function()
-			local efm = vim.lsp.get_active_clients({ name = "efm" })
-			if vim.tbl_isempty(efm) then
-				return
-			end
-
-			vim.lsp.buf.format({ name = "efm" })
-		end,
-	}) ]]
+	-- Ltex-LS
+	lspconfig.ltex.setup({
+		capabilities = capabilities,
+		on_attach = on_attach,
+	})
 end
 
--- local nvim_lspconfig = require("lspconfig")
--- nvim_lspconfig.setup(config_fun)
 config_fun()
