@@ -2,7 +2,7 @@ local M = {}
 
 -- Set keymaps with description
 M.map = function(mode, lhs, rhs, opts)
-    vim.keymap.set(mode, lhs, rhs, opts)
+	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 -- Set keymaps on the active lsp servers
@@ -20,7 +20,7 @@ M.on_attach = function(client, bufnr)
 	map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
 	map("n", "gd", vim.lsp.buf.definition, "Go to definition")
 	map("n", "K", vim.lsp.buf.hover, "Hover info")
-	map("n", "gi", vim.lsp.buf.implementation, "List implementations")
+	map("n", "gI", vim.lsp.buf.implementation, "List implementations")
 	map("n", "gr", vim.lsp.buf.references, "List references")
 	map("n", "<leader>ca", vim.lsp.buf.code_action, "Code actions")
 

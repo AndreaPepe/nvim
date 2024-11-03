@@ -43,7 +43,7 @@ cmp.setup({
 			"i",
 			"c",
 		}),
-		["C-Space"] = cmp.mapping.complete(),
+		["<C-Space>"] = cmp.mapping.complete(),
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		["<C-e>"] = cmp.mapping.abort(),
 	}),
@@ -82,17 +82,39 @@ cmp.setup.cmdline(":", {
 	},
 })
 
+-- neovim diagnostics: float (rather than virtual-text)
+vim.diagnostic.config({
+	virtual_text = {
+		source = "if_many",
+		prefix = "● ",
+	},
+	update_in_insert = true,
+	underline = true,
+	severity_sort = true,
+	float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
+})
+
 local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
+	debug = true,
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.latexindent,
-		null_ls.builtins.diagnostics.flake8,
+		-- null_ls.builtins.formatting.prettier,
+		-- null_ls.builtins.diagnostics.flake8,
+		-- null_ls.builtins.diagnostics.ruff,
 		null_ls.builtins.diagnostics.luacheck,
-		null_ls.builtins.diagnostics.chktex,
+		-- null_ls.builtins.diagnostics.chktex,
 	},
 	-- format on save
 	on_attach = function(client, bufnr)

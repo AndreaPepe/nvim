@@ -42,18 +42,47 @@ local config_fun = function()
 		settings = {
 			pyright = {
 				disableOrganizeImports = false,
+				useLibraryCodeForTypes = true,
 				analysis = {
 					useLibraryCodeForTypes = true,
 					autoSearchPaths = true,
 					diagnosticMode = "workspace",
 					autoImportCompletions = true,
+					typeCheckingMode = "off",
 				},
 			},
+			--[[ python = {
+				analysis = {
+					useLibraryCodeForTypes = true,
+					autoSearchPaths = true,
+					diagnosticMode = "workspace",
+					autoImportCompletions = true,
+					typeCheckingMode = "off",
+				},
+			}, ]]
 		},
 	})
 
 	-- Ltex-LS
-	lspconfig.ltex.setup({
+	--[[ lspconfig.ltex.setup({
+		capabilities = capabilities,
+		on_attach = on_attach,
+		filetypes = { "tex", "bib" },
+		settings = {
+			ltex = {
+				language = "en-US",
+			},
+		},
+	}) ]]
+
+	-- clangd
+	lspconfig.clangd.setup({
+		capabilities = capabilities,
+		on_attach = on_attach,
+	})
+
+	-- bash
+	lspconfig.bashls.setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
 	})
