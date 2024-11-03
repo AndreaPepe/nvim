@@ -1,3 +1,4 @@
 bundle
 *.bak
 .luarc.json
+lazy-lock.json
