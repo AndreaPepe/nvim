@@ -4,9 +4,9 @@ vim.api.nvim_create_augroup("aucmdgrp", { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
 -- tab and indentation
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
+opt.tabstop = 8
+opt.shiftwidth = 8
+opt.softtabstop = 8
 opt.expandtab = true
 opt.smartindent = true
 opt.wrap = false
