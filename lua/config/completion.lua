@@ -111,7 +111,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.black,
 		require("none-ls.formatting.latexindent"),
 		require("none-ls.diagnostics.ruff"),
-        require("none-ls-luacheck.diagnostics.luacheck"),
+		require("none-ls-luacheck.diagnostics.luacheck"),
 	},
 	-- format on save
 	on_attach = function(client, bufnr)

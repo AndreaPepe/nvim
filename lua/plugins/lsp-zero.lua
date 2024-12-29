@@ -1,4 +1,4 @@
-return 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v3.x",
-	}
+return {
+	"VonHeikemen/lsp-zero.nvim",
+	branch = "v3.x",
+}
