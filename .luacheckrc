@@ -1,4 +1,5 @@
 ---@diagnostic disable: lowercase-global
+---@diagnostic disable: missing-fields
 
 ignore = {
 	"111", -- setting non-standard global variable
@@ -9,6 +10,6 @@ ignore = {
 }
 
 -- Global objects defined by the C code
-read_globals = {
+globals = {
 	"vim",
 }

@@ -55,6 +55,7 @@ cmp.setup({
 		{ name = "path" },
 	}),
 	-- configure lspkind for VSCode-like icons
+	--- @diagnostic disable-next-line: missing-fields
 	formatting = {
 		format = lspkind.cmp_format({
 			maxwidth = 50,
