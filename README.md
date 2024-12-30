@@ -77,6 +77,20 @@ wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/do
 && fc-cache -fv
 ```
 
+Anyway, this configuration comes with the `Fira Mono` **built-in NerdFont**
+and, if you like it, you can install it and use it. It is located under the
+`fonts/` directory.
+```sh
+cp fonts/FiraMono.zip ~/.local/share/fonts \
+&& cd ~/.local/share/fonts \
+&& unzip FiraMono.zip \
+&& rm FiraMono.zip \
+&& fc-cache -fv
+```
+
+> NOTE: once installed, remember to set the font is your terminal default font!
+
+
 ## Plugins <a name="plugins"></a>
 All plugins are managed using the [**Lazy**](https://github.com/folke/lazy.nvim) Plugin Manager.
 
