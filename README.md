@@ -134,6 +134,7 @@ All plugins are managed using the [**Lazy**](https://github.com/folke/lazy.nvim)
 - [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim): set `vim.ui.select` to telescope
 - [todo-comments](https://github.com/folke/todo-comments.nvim): highlight TODO comments
     <!-- - [plenary](https://github.com/nvim-lua/plenary.nvim): dependency -->
+- [vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace): highlights and strip trailing whitespaces
 - [which-key](https://github.com/folke/which-key.nvim): keybindings helper
 
 ### Utilities <a name="plugins-utilities"></a>
