@@ -35,6 +35,7 @@ My personal NeoVim configuration.
 1. [Requirements](#requirements)
 2. [Installation](#installation)
     1. [How to install a NerdFont](#installation-nerdfont)
+    2. Post-installation check(#installation-checkhealth)
 3. [Plugins](#plugins)
     1. [UI](#plugins-ui)
     2. [Utilities](#plugins-utilities)
@@ -52,6 +53,13 @@ My personal NeoVim configuration.
 * __unzip__
 * __gzip__
 * C compiler in PATH and __libstdc++__ installed
+
+### Suggested packages
+The following packages are not strictly necessaries, but allows you to exploit 
+all the plugins' features:
+
+* __ripgrep__: needed by `Telescope` for the _live-grep_ functionality
+* __python3-pip__, __python3-venv__: useful for `Mason` and some LSP
 
 ## Installation <a name="installation"></a>
 To get this configuration to properly work, you need to use one NerdFont as
@@ -89,6 +97,23 @@ cp fonts/FiraMono.zip ~/.local/share/fonts \
 ```
 
 > NOTE: once installed, remember to set the font is your terminal default font!
+
+### Post-installation check <a name="installation-checkhealth">
+In order to check if anything is correctly installed, you can open NeoVim by
+typing in your terminal:
+```sh
+nvim
+```
+The first time you open it, you should see the `Lazy` interface showing the 
+download of several packages.
+
+Once it's done, you can run the `:checkhealth` command in NeoVim to see if
+there are missing dependencies.
+There is a high chance you will be missing some LSP, formatters or linters and 
+this will reflect in several **ERROR** statement in the checkhealth section of 
+`none-ls`. **Don't worry, this is completely fine!** If you want to install 
+(any of) those, just run the `:Mason` command and download and install them
+through `Mason`'s interface.
 
 
 ## Plugins <a name="plugins"></a>
