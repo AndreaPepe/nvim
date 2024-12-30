@@ -35,7 +35,7 @@ My personal NeoVim configuration.
 1. [Requirements](#requirements)
 2. [Installation](#installation)
     1. [How to install a NerdFont](#installation-nerdfont)
-    2. Post-installation check(#installation-checkhealth)
+    2. [Post-installation check](#installation-checkhealth)
 3. [Plugins](#plugins)
     1. [UI](#plugins-ui)
     2. [Utilities](#plugins-utilities)
