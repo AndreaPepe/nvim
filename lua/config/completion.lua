@@ -115,7 +115,7 @@ null_ls.setup({
 		require("none-ls-luacheck.diagnostics.luacheck"),
 	},
 	-- format on save
-	on_attach = function(client, bufnr)
+	--[[ on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 			vim.api.nvim_create_autocmd("BufWritePre", {
@@ -131,5 +131,5 @@ null_ls.setup({
 				end,
 			})
 		end
-	end,
+	end, ]]
 })
