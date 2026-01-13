@@ -2,7 +2,7 @@ return {
 	"williamboman/mason.nvim",
 	cmd = "Mason",
 	event = "BufReadPre",
-	config = {
+	opts = {
 		ui = {
 			icons = {
 				package_installed = "✓",

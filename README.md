@@ -43,7 +43,7 @@ My personal NeoVim configuration.
     4. [Completion](#plugins-completion)
 
 ## Requirements <a name="requirements"></a>
-* __NeoVim__ >= 0.10
+* __NeoVim__ >= 0.11.5
 * __lua__, __luacheck__, __luarocks__ need to be installed on the system
 * __wget__
 * __node__, __npm__
