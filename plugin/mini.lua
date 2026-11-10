@@ -10,6 +10,7 @@ require("mini.notify").setup({
 			return notif.msg
 		end,
 	},
+	lsp_progress = { enable = false },
 })
 
 -- cmdline completion

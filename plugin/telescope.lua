@@ -18,3 +18,9 @@ ts.setup({
 	},
 })
 ts.load_extension("ui-select")
+
+-- Diagnostic shortcuts
+vim.keymap.set('n', '<leader>d', '<CMD> Telescope diagnostics bufnr=0 <CR>',
+	{ desc = "Telescope diagnostics current buffer" } )
+vim.keymap.set('n', '<leader>D', '<CMD> Telescope diagnostics <CR>',
+	{ desc = "Telescope diagnostics" } )

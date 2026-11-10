@@ -2,10 +2,42 @@ vim.pack.add({
 	{ src = 'https://github.com/neovim/nvim-lspconfig' },
 	{ src = 'https://github.com/mason-org/mason.nvim' },
 })
-
 require("mason").setup()
 
+-- blink.cmp
+vim.pack.add({
+	{ src = 'https://github.com/rafamadriz/friendly-snippets' },
+	{
+		src = 'https://github.com/saghen/blink.cmp',
+		version = vim.version.range('1.x'),
+	},
+})
+
+local blink = require('blink.cmp')
+blink.setup({
+	keymap = {
+		preset = 'default',
+		['<CR>'] = { 'accept', 'fallback' },
+		['<Tab>'] = { 'select_next', 'fallback' },
+		['<S-Tab>'] = { 'select_prev', 'fallback' },
+	},
+	appearance = { nerd_font_variant = 'mono' },
+	completion = {
+		documentation = { auto_show = true },
+		menu = { auto_show = true },
+	},
+	sources = {
+		default = { 'lsp', 'snippets', 'buffer', 'path' },
+	},
+	fuzzy = { implementation = 'prefer_rust_with_warning' },
+})
+
+
+-- Begin LSP config
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend('force', capabilities,
+		blink.get_lsp_capabilities({}, false))
+
 vim.lsp.config("*", { capabilities = capabilities })
 
 -- lua_ls
@@ -67,11 +99,13 @@ vim.lsp.enable({
 -- Diagnostics
 vim.diagnostic.config({
 	virtual_text = false,
+	update_on_insert = false,
 })
 
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float,
 	{ desc = "Show line diagnostics" })
+
 -- Tabella di conversione dei codici LSP in testo leggibile
 local lsp_kinds = {
   [1] = "Text", [2] = "Method", [3] = "Function", [4] = "Constructor",
@@ -84,7 +118,7 @@ local lsp_kinds = {
 }
 
 -- Funzione che intercetta i suggerimenti e popola la colonna "kind"
-local function custom_omnifunc(findstart, base)
+function custom_omnifunc(findstart, base)
   if findstart == 1 then
     return vim.lsp.omnifunc(findstart, base)
   end
@@ -107,20 +141,26 @@ local function custom_omnifunc(findstart, base)
 end
 
 -- Autocomplete
-vim.opt.autocomplete = true
+-- vim.opt.autocomplete = true
 vim.opt.completeitemalign = "abbr,kind,menu"
-vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup("UserGroup", { clear = false }),
-	callback = function(ev)
-		local client = assert(
-			vim.lsp.get_client_by_id(ev.data.client_id)
-		)
-
-		if client:supports_method('textDocument/completion') then
-			vim.lsp.completion.enable(true, client.id, ev.buf,
-				{ autotrigger = true })
-
-			vim.bo[ev.buf].omnifunc = "v:lua.custom_omnifunc"
-		end
-	end
+-- vim.api.nvim_create_autocmd('LspAttach', {
+-- 	group = vim.api.nvim_create_augroup("UserGroup", { clear = false }),
+-- 	callback = function(ev)
+-- 		local client = assert(
+-- 			vim.lsp.get_client_by_id(ev.data.client_id)
+-- 		)
+--
+-- 		if client:supports_method('textDocument/completion') then
+-- 			vim.lsp.completion.enable(true, client.id, ev.buf,
+-- 				{ autotrigger = true })
+--
+-- 			-- vim.bo[ev.buf].omnifunc = "v:lua.custom_omnifunc"
+-- 		end
+-- 	end
+-- })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "TelescopePrompt",
+	callback = function()
+		vim.opt_local.autocomplete = false
+	end,
 })
